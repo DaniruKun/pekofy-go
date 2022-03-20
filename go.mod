@@ -1,3 +1,3 @@
-module github.com/DaniruKun/pekofy
+module github.com/DaniruKun/pekofy-go
 
 go 1.17
