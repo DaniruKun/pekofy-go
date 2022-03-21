@@ -3,22 +3,27 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: ", os.Args[0], "Blob of text to pekofy")
-		return
-	}
-
 	var text string
 
-	if len(os.Args) > 2 {
-		text = strings.Join(os.Args[1:], " ")
-	} else {
+	switch {
+	case len(os.Args) == 3 && hasFileFlag(os.Args):
+		bytes, err := ioutil.ReadFile(os.Args[2])
+		if err != nil {
+			log.Fatal("Failed to read contents of file: ", os.Args[2])
+		} else {
+			text = string(bytes)
+		}
+	case len(os.Args) == 1 || (len(os.Args) == 2 && hasFileFlag(os.Args)):
+		fmt.Println("Usage: ", os.Args[0], "Blob of text to pekofy")
+		return
+	default:
 		text = os.Args[1]
 	}
 
@@ -47,4 +52,13 @@ func pekofyText(text string) (string, error) {
 	pekofied = strings.ReplaceAll(text, ".", " peko.")
 	pekofied = strings.ReplaceAll(pekofied, " co", " peko")
 	return pekofied, nil
+}
+
+func hasFileFlag(args []string) bool {
+	for _, arg := range args {
+		if arg == "-f" || arg == "--file" {
+			return true
+		}
+	}
+	return false
 }
