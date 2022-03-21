@@ -14,7 +14,7 @@ func main() {
 		return
 	}
 
-	text := ""
+	var text string
 
 	if len(os.Args) > 2 {
 		text = strings.Join(os.Args[1:], " ")
@@ -31,7 +31,8 @@ func main() {
 	fmt.Println(res)
 }
 
-// pekofyText pekofies a given text string by adding `peko` to the end of each sentence terminated by a dot
+// pekofyText pekofies a given text string by adding `peko` to the end of each sentence terminated by a dot,
+// as well as rhymes words starting with `co` with `peko`
 func pekofyText(text string) (string, error) {
 	if text == "" {
 		return text, errors.New("nothing to pekofy")
@@ -41,6 +42,9 @@ func pekofyText(text string) (string, error) {
 		text += "."
 	}
 
-	pekofied := strings.ReplaceAll(text, ".", " peko.")
+	var pekofied string
+
+	pekofied = strings.ReplaceAll(text, ".", " peko.")
+	pekofied = strings.ReplaceAll(pekofied, " co", " peko")
 	return pekofied, nil
 }

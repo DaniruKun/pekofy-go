@@ -27,3 +27,15 @@ func Test_pekofyTextNormal(t *testing.T) {
 		t.Fatalf(`ExpectedL %q but got: %q`, want, res)
 	}
 }
+
+func Test_pekofyTextWithCos(t *testing.T) {
+	example := "I like going to concerts"
+
+	want := "I like going to pekoncerts peko."
+
+	res, err := pekofyText(example)
+
+	if !(res == want) || (err != nil) {
+		t.Fatalf(`ExpectedL %q but got: %q`, want, res)
+	}
+}
