@@ -5,3 +5,7 @@
 ## Build
 
 Simply run `go build`
+
+## Testing
+
+Run `go test`.
