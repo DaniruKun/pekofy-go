@@ -16,12 +16,13 @@ func main() {
 	case len(os.Args) == 3 && hasFileFlag(os.Args):
 		bytes, err := ioutil.ReadFile(os.Args[2])
 		if err != nil {
-			log.Fatal("Failed to read contents of file: ", os.Args[2])
+			log.Fatal("Failed to read contents of file: ", err)
 		} else {
 			text = string(bytes)
 		}
 	case len(os.Args) == 1 || (len(os.Args) == 2 && hasFileFlag(os.Args)):
 		fmt.Println("Usage: ", os.Args[0], "Blob of text to pekofy")
+		fmt.Println(os.Args[0], "-f FILENAME")
 		return
 	default:
 		text = os.Args[1]

@@ -2,10 +2,14 @@
 
 `pekofy-go` is a Go implementation of the pekofy bot as a toy excersize in string processing.
 
-## Build
+## Usage
 
-Simply run `go build`
+```shell
+pekofy -f "test-input"
 
-## Testing
+Hololive is a group of virtual YouTubers created by Cover Corp peko.
+```
 
-Run `go test`.
+## Build and Test
+
+Simply run `make all`
