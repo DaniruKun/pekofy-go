@@ -9,10 +9,10 @@ func Test_pekofyTextNoEndPunct(t *testing.T) {
 
 	want := "Hello there peko."
 
-	res, err := pekofyText(example)
+	err := pekofyText(&example)
 
-	if !(res == want) || (err != nil) {
-		t.Fatalf(`Expected: %q but got: %q`, want, res)
+	if !(example == want) || (err != nil) {
+		t.Fatalf(`Expected: %q but got: %q`, want, example)
 	}
 }
 
@@ -21,10 +21,10 @@ func Test_pekofyTextNormal(t *testing.T) {
 
 	want := "Gura is very cute peko."
 
-	res, err := pekofyText(example)
+	err := pekofyText(&example)
 
-	if !(res == want) || (err != nil) {
-		t.Fatalf(`ExpectedL %q but got: %q`, want, res)
+	if !(example == want) || (err != nil) {
+		t.Fatalf(`ExpectedL %q but got: %q`, want, example)
 	}
 }
 
@@ -33,9 +33,9 @@ func Test_pekofyTextWithCos(t *testing.T) {
 
 	want := "I like going to pekoncerts peko."
 
-	res, err := pekofyText(example)
+	err := pekofyText(&example)
 
-	if !(res == want) || (err != nil) {
-		t.Fatalf(`ExpectedL %q but got: %q`, want, res)
+	if !(example == want) || (err != nil) {
+		t.Fatalf(`ExpectedL %q but got: %q`, want, example)
 	}
 }

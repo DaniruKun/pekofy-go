@@ -28,31 +28,29 @@ func main() {
 		text = os.Args[1]
 	}
 
-	res, err := pekofyText(text)
+	err := pekofyText(&text)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(res)
+	fmt.Println(text)
 }
 
 // pekofyText pekofies a given text string by adding `peko` to the end of each sentence terminated by a dot,
 // as well as rhymes words starting with `co` with `peko`
-func pekofyText(text string) (string, error) {
-	if text == "" {
-		return text, errors.New("nothing to pekofy")
+func pekofyText(text *string) error {
+	if *text == "" {
+		return errors.New("nothing to pekofy")
 	}
 
-	if strings.LastIndex(text, ".") == -1 {
-		text += "."
+	if strings.LastIndex(*text, ".") == -1 {
+		*text += "."
 	}
 
-	var pekofied string
-
-	pekofied = strings.ReplaceAll(text, ".", " peko.")
-	pekofied = strings.ReplaceAll(pekofied, " co", " peko")
-	return pekofied, nil
+	*text = strings.ReplaceAll(*text, ".", " peko.")
+	*text = strings.ReplaceAll(*text, " co", " peko")
+	return nil
 }
 
 func hasFileFlag(args []string) bool {
